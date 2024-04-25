@@ -135,13 +135,15 @@ export default {
         },
         // Функция закрывает редактор
         setCloseJodit() {
-            this.siteMapPage = null;
+			if (confirm("Закрыть?")) {
+				this.siteMapPage = null;
+			}
         },
         setModalJoditTitle(title: string) {
             this.modalJoditTitle = title;
         }
     },
-    // Срабатывает до первичной отрисовки, срабатывает функция возвращающее дерево 
+    // Срабатывает до первичной отрисовки, срабатывает функция возвращающее дерево
     beforeMount() {
         this.getSiteMapTree();
     },
