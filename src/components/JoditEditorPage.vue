@@ -39,7 +39,7 @@
                 })">
                     Сохранить
                 </button>
-                <button class="btn" @click="setCloseJodit">
+                <button class="btn close" @click="setCloseJodit">
                     Закрыть
                 </button>
             </div>
@@ -120,7 +120,11 @@ export default {
     letter-spacing: 2px;
     position: relative;
     background-color: #3aebcaaa;
-    width: 30vw;
+    width: 62vw;
+}
+.close {
+	background-color: #e866;
+	width: 38vw;
 }
 
 .btn:before {
@@ -149,6 +153,7 @@ export default {
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 15px
+    gap: 15px;
+	 padding: 2em 0 0;
 }
 </style>

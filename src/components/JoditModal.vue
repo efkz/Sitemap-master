@@ -52,13 +52,13 @@ export default {
 
 .modal {
     position: relative;
-    width: 90vw;
-    height: 90vh;
+    width: 95vw;
+    height: 95vh;
     background-color: white;
     height: auto;
-    padding: 40px;
-    border-radius: 20px;
-    max-height: 90vh;
+    padding: 1rem;
+    border-radius: 1rex;
+    max-height: 95vh;
 }
 
 .cross {
