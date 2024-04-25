@@ -67,3 +67,7 @@ body {
 	-webkit-tap-highlight-color: transparent;
 	background: #fafafa;
 }
+
+strong {
+	font-weight: bold;
+}
