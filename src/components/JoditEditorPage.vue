@@ -86,8 +86,9 @@ export default {
             ],
             // Тут выставляем настройки для текстового редактора, гуглим jodit config и вставляем все что нам нужно
             config: {
-                height: '700px',
-                allowResizeY: false
+                height: '70vh',
+                allowResizeY: false,
+                'disablePlugins': 'add-new-line',
             }
         }
     },

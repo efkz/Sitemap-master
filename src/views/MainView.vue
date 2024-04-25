@@ -46,7 +46,12 @@ export default {
             modalItem: null as TSiteMapTree | null,
             optionsTypes: null as any,
             treeId: null as number | null,
-            modalJoditTitle: '' as string
+            modalJoditTitle: '' as string,
+            config: {
+                height: '70vh',
+                allowResizeY: false,
+                'disablePlugins': 'add-new-line',
+            }
         }
     },
     methods: {

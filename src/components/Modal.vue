@@ -142,13 +142,13 @@ export default {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 100000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal {
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
     height: auto;
     padding: 30px;

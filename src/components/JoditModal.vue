@@ -44,16 +44,16 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 20000002;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modal {
+    position: relative;
     width: 90vw;
     height: 90vh;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: white;
     height: auto;
     padding: 40px;
