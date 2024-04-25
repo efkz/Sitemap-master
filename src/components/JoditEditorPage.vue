@@ -1,5 +1,8 @@
 <template>
     <div style="display: flex; justify-content: space-between; gap: 10px; padding: 10px;">
+        <div style="width: 70%;">
+            <jodit-editor v-model="content" :config="config" />
+        </div>
         <div style="width: 30%;">
             <div class="input">
                 <label>Title:</label>
@@ -25,24 +28,23 @@
                     </option>
                 </select>
             </div>
-        </div>
-        <div style="width: 70%;">
-            <jodit-editor v-model="content" :config="config" />
+            <div class="buttons">
+                <button class="btn" @click="onClickPageSave(id, {
+                    Title: title,
+                    Descr: descr,
+                    Robots: robots,
+                    PageCSS: pageCSS,
+                    Shablon: shablon,
+                    PageHTML: content
+                })">
+                    Сохранить
+                </button>
+                <button class="btn" @click="setCloseJodit">
+                    Закрыть
+                </button>
+            </div>
         </div>
     </div>
-    <button class="btn" @click="onClickPageSave(id, {
-        Title: title,
-        Descr: descr,
-        Robots: robots,
-        PageCSS: pageCSS,
-        Shablon: shablon,
-        PageHTML: content
-    })">
-        Сохранить
-    </button>
-    <button class="btn" @click="setCloseJodit">
-        Закрыть
-    </button>
 </template>
 
 <script lang="ts">
@@ -84,7 +86,8 @@ export default {
             ],
             // Тут выставляем настройки для текстового редактора, гуглим jodit config и вставляем все что нам нужно
             config: {
-                height: '400px'
+                height: '700px',
+                allowResizeY: false
             }
         }
     },
@@ -110,14 +113,13 @@ export default {
 .btn {
     text-align: center;
     display: inline-block;
-    padding: 15px 40px;
+    padding: 10px 30px;
     border: 1px solid #fff;
     cursor: pointer;
     letter-spacing: 2px;
     position: relative;
-    margin: 0 20px;
     background-color: #3aebcaaa;
-    width: 160px;
+    width: 30vw;
 }
 
 .btn:before {
@@ -141,5 +143,11 @@ export default {
     box-shadow: 0 2px 0px #387796;
     transition: all .2s;
     color: #fff;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px
 }
 </style>

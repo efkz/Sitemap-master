@@ -1,4 +1,9 @@
 <template>
+    <div class="vl-parent">
+        <loading color="#3aebcaaa" v-model:active="mainStore.pageLoading" :can-cancel="false" :is-full-page="true" />
+    </div>
+    <JoditModal v-if="siteMapPage" :setCloseJodit="setCloseJodit"
+        :onClickPageSave="onClickPageSave" :siteMapPage="siteMapPage" :modalJoditTitle="modalJoditTitle" />
     <!-- Тут находится модальное окно -->
     <Modal v-if="isModal" :setCloseModal="setCloseModal" :onClickAddNewNode="onClickAddNewNode"
         :onClickGetTypes="onClickGetTypes" :modalTitle="modalTitle" :modalFlag="modalFlag" :optionsTypes="optionsTypes"
@@ -8,17 +13,10 @@
         <ul>
             <TreeItem v-for="(item) in siteMapTree" :key="item.ID" :item="item"
                 :children="item.Children && item.Children.filter((el: TSiteMapTree) => el.PID === item.ID)"
-                :onClickPageRead="onClickPageRead" :setOpenModal="setOpenModal"
-                :modalNodeId="modalNodeId"
+                :onClickPageRead="onClickPageRead" :setOpenModal="setOpenModal" :modalNodeId="modalNodeId"
+                :setModalJoditTitle="setModalJoditTitle"
                 />
         </ul>
-    </div>
-    <!-- Тут находится текстовыый редактор -->
-    <div v-if="siteMapPage && !mainStore.pageLoading" style="margin-top: 20px;">
-        <JoditEditorPage :setCloseJodit="setCloseJodit" :onClickPageSave="onClickPageSave" :siteMapPage="siteMapPage" />
-    </div>
-    <div class="loading" v-if="mainStore.pageLoading">
-        <LoadingVue />
     </div>
 </template>
 
@@ -29,10 +27,13 @@ import JoditEditorPage from '../components/JoditEditorPage.vue';
 import Modal from '../components/Modal.vue';
 import { type TSiteMapTree, type TSiteMapPage, type TSiteMapTypes } from '../stores/types/mainTypes';
 import LoadingVue from '@/components/Loading.vue';
+import JoditModal from '../components/JoditModal.vue'
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
 export default {
     name: 'MainView',
-    components: { TreeItem, JoditEditorPage, Modal, LoadingVue },
+    components: { TreeItem, JoditEditorPage, Modal, LoadingVue, JoditModal, Loading },
     data() {
         return {
             mainStore: useMainStore(),
@@ -44,7 +45,8 @@ export default {
             modalNodeId: NaN as number,
             modalItem: null as TSiteMapTree | null,
             optionsTypes: null as any,
-            treeId: null as number | null
+            treeId: null as number | null,
+            modalJoditTitle: '' as string
         }
     },
     methods: {
@@ -129,6 +131,9 @@ export default {
         // Функция закрывает редактор
         setCloseJodit() {
             this.siteMapPage = null;
+        },
+        setModalJoditTitle(title: string) {
+            this.modalJoditTitle = title;
         }
     },
     // Срабатывает до первичной отрисовки, срабатывает функция возвращающее дерево 

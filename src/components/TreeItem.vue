@@ -20,7 +20,8 @@
         </div>
         <ul v-if="open" v-for="(i) in item.Children">
             <TreeItem :key="i.ID" :item="i" :children="children.filter((el: TSiteMapTree) => el.PID === i.ID)"
-                :onClickPageRead="onClickPageRead" :setOpenModal="setOpenModal" :modalNodeId="modalNodeId" />
+                :onClickPageRead="onClickPageRead" :setOpenModal="setOpenModal" :modalNodeId="modalNodeId"
+                :setModalJoditTitle="setModalJoditTitle" />
         </ul>
     </li>
 </template>
@@ -57,6 +58,10 @@ export default {
             type: Function as PropType<(flag: string, title: string, item: TSiteMapTree) => void>,
             required: true
         },
+        setModalJoditTitle: {
+            type: Function as PropType<(title: string) => void>,
+            required: true
+        },
     },
     components: { JoditEditor },
     data() {
@@ -84,6 +89,7 @@ export default {
                 }, this.delay);
             } else {
                 clearTimeout(this.timer);
+                this.setModalJoditTitle(item.Title)
                 if (item.TypeID == 1 && item.Children) {
                     this.onClickPageRead(item.ID)
                 } else if (item.TypeID == 1 && !item.Children) {

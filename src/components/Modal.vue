@@ -1,6 +1,6 @@
 <template>
     <div class="modal-overlay">
-        <div :style="{ width: modalFlag === 'edit' ? '62%' : '300px' }" class="modal">
+        <div :style="{ width: modalFlag !== 'delete' ? '62%' : '300px' }" class="modal">
             <img @click="setCloseModal" class="cross" src="../assets/svg/cross.svg" />
             <p style="font-weight: bold; text-align: center;">{{ modalTitle }}</p>
 
@@ -16,7 +16,7 @@
                     <input placeholder="..." v-model="urn" class="form-control" type="text">
                 </div>
 
-                <div :class="{ 'inputs-edit': modalFlag === 'edit' }">
+                <div :class="{ 'inputs-edit': modalFlag !== 'delete' }">
                     <div class="input">
                         <label class="label">V:</label>
                         <select v-model="v" class="form-control">
