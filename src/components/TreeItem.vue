@@ -68,7 +68,7 @@ export default {
         return {
             mainStore: useMainStore(),
             open: false,
-            delay: 200,
+            delay: 300,
             clicks: 0,
             timer: 0 as ReturnType<typeof setTimeout>
         }
@@ -124,11 +124,10 @@ ul {
     cursor: pointer;
     align-items: center;
     transition: 0.2s;
-    margin-left: 50px;
+    padding: .1ex;
 
     &:hover {
-        background-color: rgb(23%, 92%, 79%, 0.5);
-        ;
+        background-color: hsl(211, 68%, 88%);
         user-select: none
     }
 }
@@ -137,9 +136,10 @@ ul {
     height: 20px;
     width: 20px;
     transition: 0.2s;
+	 margin-left: .5ex;
 
     &:hover {
-        transform: scale(1.2);
+        transform: scale(1.3);
         user-select: none
     }
 }
@@ -147,6 +147,7 @@ ul {
 .img-file {
     height: 20px;
     width: 20px;
+	 margin-left: .5ex;
     user-select: none
 }
 </style>
